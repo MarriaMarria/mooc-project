@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
 import Course from './Course'
+import Review from './Review'
 
 import {
   column,
@@ -9,6 +10,7 @@ import {
   HasMany,
   hasMany,
 } from '@ioc:Adonis/Lucid/Orm'
+import Review from './Review'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -43,13 +45,7 @@ export default class User extends BaseModel {
   @hasMany(() => Course)
   public course: HasMany<typeof Course>;
 
-  // many to many 
+  @hasMany(() => Review)
+  public review: HasMany<typeof Review>;
 
-  // role() {
-  //   return this.belongsToMany(
-  //     'App/Models/User',
-  //     'user.id',
-  //     'role.id'
-  //   ).pivotTable('has-followers')
-  // }
 }

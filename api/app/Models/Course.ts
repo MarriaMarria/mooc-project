@@ -11,6 +11,7 @@ import {
   HasMany,
   } from '@ioc:Adonis/Lucid/Orm'
 import User from './User'
+import Review from './Review'
 
 export default class Course extends BaseModel {
   @column({ isPrimary: true })
@@ -39,9 +40,10 @@ export default class Course extends BaseModel {
   })
   public step: HasMany<typeof Step>; //the model we are relating 
 
-  // @manyToMany(() => User)
-  // public users: ManyToMany<typeof User>
-
+  @hasMany(() => Review, {
+    foreignKey: 'review_id'
+  })
+  public review: HasMany<typeof Review>; 
   // Relationships
   // many to one = belongs to
   @belongsTo(() => User)
