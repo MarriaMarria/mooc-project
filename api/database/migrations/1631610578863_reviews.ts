@@ -10,16 +10,9 @@ export default class Reviews extends BaseSchema {
       table.string('review')
       table.timestamp('created_at', { useTz: true }).notNullable()
       table.timestamp('updated_at', { useTz: true }).notNullable()
-      table.timestamps(true)
-      table
-          .integer('course_id')
-          .unsigned()
-          .references('courses.id')
-          .onDelete('CASCADE') // delete when the course is deleted
-      table
-          .integer('user_id')
-          .unsigned()
-          .references('users.id')
+      // table.timestamps(true)
+      table.integer('course_id').unsigned().references('courses.id').onDelete('CASCADE') // delete when the course is deleted
+      table.integer('user_id').unsigned().references('users.id')
     })
   }
 

@@ -3,15 +3,18 @@ import Step from "App/Models/Step"
 import { 
   BaseModel, 
   column,
-  // manyToMany,
-  // ManyToMany,
+  manyToMany,
+  ManyToMany,
   BelongsTo,
   belongsTo,
   hasMany,
   HasMany,
+  ManyToMany,
   } from '@ioc:Adonis/Lucid/Orm'
 import User from './User'
 import Review from './Review'
+import Categories from 'Database/migrations/1631611508667_categories'
+import Category from './Category'
 
 export default class Course extends BaseModel {
   @column({ isPrimary: true })
@@ -44,8 +47,11 @@ export default class Course extends BaseModel {
     foreignKey: 'review_id'
   })
   public review: HasMany<typeof Review>; 
-  // Relationships
-  // many to one = belongs to
+
   @belongsTo(() => User)
   public user: BelongsTo<typeof User>;
+
+  @manyToMany(() => Category)
+  public category: ManyToMany<typeof Category>
+    
 }
