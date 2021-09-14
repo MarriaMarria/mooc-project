@@ -27,7 +27,9 @@ const hashConfig: HashConfig = {
   | free to change the default value
   |
   */
-  default: Env.get('HASH_DRIVER', 'argon'),
+
+  // it was ('HASH_DRIVER', 'argon') but didn't work with phc-argon2
+  default: Env.get('HASH_DRIVER', 'bcrypt'),
 
   list: {
     /*

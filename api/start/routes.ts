@@ -19,6 +19,7 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
+
 import HealthCheck from '@ioc:Adonis/Core/HealthCheck'
 import { Response } from '@adonisjs/core/build/standalone'
 
@@ -32,6 +33,17 @@ Route.get('health', async ({ response }) => {
 })
 
 Route.get('users', 'UsersController.get')
-Route.post('users', 'UsersController.post')
-Route.get('course', 'CoursesController.get')
-Route.post('course', 'CoursesController.post')
+
+Route.post('register', "AuthController.register");
+Route.post('login', "AuthController.login"); 
+
+// Route.get('dashboard', async ({ auth }) => {
+//   await auth.use('api').authenticate()
+
+//   // ✅ Request authenticated
+//   console.log(auth.user!)
+// })
+
+
+// Route.get('course', 'CoursesController.get')
+// Route.post('course', 'CoursesController.post')

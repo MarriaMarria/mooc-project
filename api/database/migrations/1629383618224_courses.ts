@@ -12,6 +12,7 @@ export default class Courses extends BaseSchema {
       table.string('requirements')
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
+      table.integer('user_id')
     })
   }
 
