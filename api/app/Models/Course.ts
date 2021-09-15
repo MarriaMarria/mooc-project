@@ -37,6 +37,9 @@ export default class Course extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
+  @column()
+  public userId: number;
+
   @hasMany(() => Step, {
     foreignKey: 'step_id'
   })

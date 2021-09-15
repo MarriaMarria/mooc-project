@@ -1,23 +1,3 @@
-/*
-|--------------------------------------------------------------------------
-| Routes
-|--------------------------------------------------------------------------
-|
-| This file is dedicated for defining HTTP routes. A single file is enough
-| for majority of projects, however you can define routes in different
-| files and just make sure to import them inside this file. For example
-|
-| Define routes in following two files
-| ├── start/routes/cart.ts
-| ├── start/routes/customer.ts
-|
-| and then import them inside `start/routes.ts` as follows
-|
-| import './routes/cart'
-| import './routes/customer'
-|
-*/
-
 import Route from '@ioc:Adonis/Core/Route'
 
 import HealthCheck from '@ioc:Adonis/Core/HealthCheck'
@@ -32,25 +12,19 @@ Route.get('health', async ({ response }) => {
   return report.healthy ? response.ok(report) : Response.badRequest(report)
 })
 
-// Route.get('users', 'UsersController.get')
-
-// Route.post('register', "AuthController.register");
-// Route.post('login', "AuthController.login"); 
-// Route.get('courses', 'CoursesController.get');
-// Route.post('courses/create', 'CoursesController.create').middleware("auth:api")
-
 
 Route.group(() => {
   Route.post("register", "AuthController.register");
   Route.post("login", "AuthController.login");
-  // Route.resource("courses", "CoursesController.get").apiOnly();
   Route.get("users", "UsersController.get");
-  Route.get("courses", "CoursesController.get");
-  Route.group(() => {
-    Route.resource("courses/create", "ForumsController.create").apiOnly();
-    
-  }).middleware("auth:api");
+  Route.get("courses", "CoursesController.index");
 })
+
+Route.group(() => {
+  Route.post("courses/create", "CoursesController.create");
+
+}).middleware("auth:api");
+
 // Route.get('dashboard', async ({ auth }) => {
 //   await auth.use('api').authenticate()
 
@@ -58,6 +32,32 @@ Route.group(() => {
 //   console.log(auth.user!)
 // })
 
+// https://docs.adonisjs.com/guides/controllers
+// Route.get('/posts', () => {
+//   return 'List all posts'
+// })
 
-// Route.get('course', 'CoursesController.get')
-// Route.post('course', 'CoursesController.post')
+// Route.get('/posts/create', () => {
+//   return 'Display a form to create a post'
+// })
+
+// Route.post('/posts', async () => {
+//   return 'Handle post creation form request'
+// })
+
+// Route.get('/posts/:id', () => {
+//   return 'Return a single post'
+// })
+
+// Route.get('/posts/:id/edit', () => {
+//   return 'Display a form to edit a post'
+// })
+
+// Route.put('/posts/:id', () => {
+//   return 'Handle post update form submission'
+// })
+
+// Route.delete('/posts/:id', () => {
+//   return 'Delete post'
+// })
+
