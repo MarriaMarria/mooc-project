@@ -32,11 +32,25 @@ Route.get('health', async ({ response }) => {
   return report.healthy ? response.ok(report) : Response.badRequest(report)
 })
 
-Route.get('users', 'UsersController.get')
+// Route.get('users', 'UsersController.get')
 
-Route.post('register', "AuthController.register");
-Route.post('login', "AuthController.login"); 
+// Route.post('register', "AuthController.register");
+// Route.post('login', "AuthController.login"); 
+// Route.get('courses', 'CoursesController.get');
+// Route.post('courses/create', 'CoursesController.create').middleware("auth:api")
 
+
+Route.group(() => {
+  Route.post("register", "AuthController.register");
+  Route.post("login", "AuthController.login");
+  // Route.resource("courses", "CoursesController.get").apiOnly();
+  Route.get("users", "UsersController.get");
+  Route.get("courses", "CoursesController.get");
+  Route.group(() => {
+    Route.resource("courses/create", "ForumsController.create").apiOnly();
+    
+  }).middleware("auth:api");
+})
 // Route.get('dashboard', async ({ auth }) => {
 //   await auth.use('api').authenticate()
 

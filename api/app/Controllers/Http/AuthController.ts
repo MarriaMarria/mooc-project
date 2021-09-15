@@ -14,18 +14,19 @@ export default class AuthController {
         return error.message;
     }
     }
+
     public async register({ request, auth }: HttpContextContract) {
         const username = request.input('username');
         const email = request.input('email'); 
         const password = request.input('password');
-
-
+        
     // create a new user
 
         const newUser = new User();
         newUser.email = email;
         newUser.password = password;
         newUser.username = username;
+
 
         await newUser.save();
         try {

@@ -10,7 +10,6 @@ import {
   HasMany,
   hasMany,
 } from '@ioc:Adonis/Lucid/Orm'
-import Review from './Review'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })

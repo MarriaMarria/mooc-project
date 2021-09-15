@@ -1,5 +1,9 @@
 import { DateTime } from 'luxon'
 import Step from "App/Models/Step"
+import User from './User'
+import Review from './Review'
+import Category from './Category'
+
 import { 
   BaseModel, 
   column,
@@ -8,13 +12,8 @@ import {
   BelongsTo,
   belongsTo,
   hasMany,
-  HasMany,
-  ManyToMany,
+  HasMany
   } from '@ioc:Adonis/Lucid/Orm'
-import User from './User'
-import Review from './Review'
-import Categories from 'Database/migrations/1631611508667_categories'
-import Category from './Category'
 
 export default class Course extends BaseModel {
   @column({ isPrimary: true })
